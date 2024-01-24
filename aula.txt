@@ -1,0 +1,157 @@
+Aula 01
+
+Eventos de clique (click)
+
+    meuBotao.addEventListener("click", function() {
+    alert("O botão foi clicado!");
+    });
+
+
+    elemento.addEventListener(evento, callback);
+
+    Onde:
+
+    elemento: É o elemento HTML ao qual queremos associar o evento.
+    evento: É uma string que representa o tipo de evento que desejamos capturar.
+    callback: É a função que será chamada quando o evento ocorrer.
+
+
+Eventos de submissão de formulário (submit)
+
+    const meuFormulario = document.getElementById("meuFormulario");
+
+    meuFormulario.addEventListener("submit", function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+        const nome = event.target.elements.nome.value;
+    });
+
+
+Eventos de teclado (keydown, keyup, keypress)
+
+    const meuInput = document.getElementById("meuInput");
+        meuInput.addEventListener("keydown", function(event) {
+        console.log(`Tecla pressionada: ${event.key}`);
+    });
+
+
+Eventos de foco (focus, blur)
+
+    const meuCampo = document.getElementById("meuCampo");
+        meuCampo.addEventListener("focus", function() {
+        console.log("Campo ganhou o foco.");
+    });
+
+==========================================================================================================
+Aula 02
+
+    Existem várias formas de manipular esses elementos, mas vamos nos concentrar em quatro métodos muito úteis e comuns: 
+    
+    getAttribute => O método getAttribute é usado para obter o valor de um atributo específico de um elemento HTML.
+    const valorDoAtributo = elemento.getAttribute('data-info');
+
+    setAttribute => O método setAttribute é usado para definir ou modificar o valor de um atributo em um elemento HTML.
+    paragrafo.setAttribute('id', 'paragrafoModificado');
+    
+    hasAttribute => O método hasAttribute é usado para verificar se um elemento possui um atributo específico.
+    const temHref = link.hasAttribute('href'); // retorno é um valor verdadeiro ou falso
+
+    removeAttribute => O método removeAttribute é usado para remover um atributo específico de um elemento HTML.
+    imagem.removeAttribute('alt');
+    
+
+=============================================================================================================
+Aula 03
+
+    element.classList.add('minhaClasse'); // adicionando classe
+
+    element.classList.remove('minhaClasse'); //removendo uma classe
+
+    O método toggle() do classList permite alternar uma classe em um elemento. Se a classe já estiver presente no elemento, o método a remove;
+    caso contrário, ele a adicion
+    element.classList.toggle('minhaClasse');
+
+
+    Para verificar se uma classe específica está associada a um elemento, podemos usar o método contains() do classList
+    if (element.classList.contains('minhaClasse')) {
+        // A classe 'minhaClasse' está presente no elemento
+        // Faça algo aqui...
+    }
+
+    const audioElement = new Audio('caminho/do/arquivo-de-audio.mp3');
+
+    audioElement.play(); // Inicia a reprodução
+    audioElement.pause(); // Pausa a reprodução
+    audioElement.currentTime = 10; // Move para 10 segundos no áudio
+    audioElement.volume = 0.5; // Define o volume para metade (50%)
+
+
+
+===================================================================================================================
+aula 04
+
+    parentNode=> é utilizada para acessar o nó pai de um elemento no DOM.
+
+    const paragraph = document.querySelector('p');
+    const parentElement = paragraph.parentNode;
+
+    console.log(parentElement.id); // Saída: "container"
+
+
+    childNodes => é utilizada para acessar todos os nós filhos de um elemento no DOM.
+
+    nextElementSibling => permite acessar o próximo irmão (nó adjacente) de um elemento no DOM.
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+
+        const item1 = document.querySelector('li:first-child');
+        const item2 = item1.nextElementSibling;
+
+        console.log(item2.textContent); // Saída: "Item 2"
+
+
+    previousElementSibling => A propriedade previousElementSibling é semelhante ao nextElementSibling, mas permite acessar o irmão anterior (nó adjacente) de um elemento no DOM.
+
+    const item3 = document.querySelector('li:last-child');
+    const item2 = item3.previousElementSibling;
+
+    console.log(item2.textContent); // Saída: "Item 2"
+
+
+===================================================================================================================
+aula 05
+
+    Construtor sem argumentos:
+        const dataAtual = new Date();
+
+    Construtor com argumentos (ano, mês, dia, hora, minuto, segundo, milissegundo):
+        const dataEspecifica = new Date(2023, 7, 3, 12, 30, 0, 0);
+
+    Construtor com uma string que representa a data (formato padrão é "yyyy-mm-dd"):
+        const dateString = "2023-08-03";
+        const formatoDeData = new Date(dateString);
+
+
+    const currentDate = new Date();
+
+    const ano = currentDate.getFullYear();  // Acessa o ano
+    const mês = currentDate.getMonth(); // Acessa o mês - Janeiro é 0, Fevereiro é 1, ..., Dezembro é 11
+    const dia = currentDate.getDate(); // Acessa o dia
+    const horas = currentDate.getHours(); // Acessa as horas 
+    const minutos = currentDate.getMinutes(); // Acessa os minutos
+    const segundos = currentDate.getSeconds(); // Acessa os segundos
+    const milissegundos = currentDate.getMilliseconds();  // Acessa os milissegundos 
+
+
+    Realizando alterações
+
+    const data = new Date();
+
+    data.setFullYear(2024);  // Define o ano
+    data.setMonth(10); // Define o mês
+    data.setDate(25); // Define o dia
+    data.setHours(10);  // Define as horas
+    data.setMinutes(30); // Define os minutos
+    data.setSeconds(0); // Define os segundos

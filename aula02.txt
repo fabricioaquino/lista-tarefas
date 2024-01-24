@@ -1,0 +1,144 @@
+01 ---------------------------------------
+localStorage:
+    O localStorage é o baú de tesouros que guarda informações sem data de validade.
+    Uma vez que você armazena algo nele, a informação fica lá até que você decida removê-la ou o usuário limpe os dados de navegação.
+
+    Peculiaridades
+    Ele tem uma capacidade generosa de armazenamento (cerca de 5-10MB, dependendo do navegador). 
+    Porém, lembre-se: é específico do domínio. O que significa que cada site tem seu próprio baú de localStorage.
+
+    O que é seguro guardar?
+    Informações não sensíveis, como preferências de usuário ou um carrinho de compras. Jamais armazene informações pessoais ou chaves de autenticação.
+
+sessionStorage:
+    Imagine o sessionStorage como uma mochila de aventura: você utiliza durante a viagem (sessão de navegação) e, quando termina, tudo que está dentro é descartado.
+
+    Mas o que exatamente é essa "sessão"?
+    Uma sessão de navegação começa quando você abre uma nova aba ou janela no seu navegador e termina quando você fecha essa aba ou janela.
+    Tecnicamente, é o período de tempo em que um usuário interage com uma aplicação web. 
+    Sendo importante frisar que cada aba ou janela aberta tem sua própria sessão independente, mesmo se estiverem acessando o mesmo site.
+
+    Peculiaridades
+    Assim como o localStorage, o sessionStorage tem uma capacidade de armazenamento similar e é específico do domínio. 
+    No entanto, seu conteúdo se evapora quando a aba ou janela do navegador é fechada.
+
+    O que é seguro guardar?
+    Dados temporários para uma sessão, como informações de um formulário que está sendo preenchido.
+
+cookies:
+    Os cookies são os pequenos biscoitos mágicos que acompanham você por diferentes sites. São usados, principalmente, para rastrear informações entre sessões e domínios.
+
+    Peculiaridades
+    São limitados em tamanho (apenas cerca de 4KB cada). E atenção! Eles são enviados em todas as solicitações HTTP, o que pode impactar a performance.
+
+    O que é seguro guardar?
+    Identificadores de sessão, preferências de usuário ou tokens de CSRF*. Mas cuidado com os regulamentos de privacidade, como o GDPR**, quando estiver trabalhando com cookies!
+
+
+
+02 -----------------------------------------------------------------------------------
+.append():
+    Bastante utilizado durante o curso, esse método permite adicionar múltiplos nós e/ou strings de texto ao final de um elemento. 
+    Se você passar uma string, o método a trata como um texto e a adiciona diretamente.
+
+.appendChild():
+    É um método mais antigo e é específico para inserir um único nó no final do elemento selecionado. Diferentemente do .append(), o .appendChild() não aceita strings diretamente. 
+    Se você quiser adicionar uma string, precisa criar um nó de texto primeiro.
+
+    
+    let div = document.querySelector("div");
+    let novoSpan = document.createElement("span");
+    div.appendChild(novoSpan);
+
+
+.prepend():
+
+    Esse método insere conteúdo no início de um elemento selecionado.
+    Por que é útil?
+    Se você deseja adicionar algo no topo de uma lista ou no começo de um container, esta é a função a ser usada.
+
+    
+    let lista = document.querySelector("ul");
+    lista.prepend("Item 0");  // Este item será inserido no começo da lista.
+
+.insertBefore():
+
+    Permite inserir um elemento, especificamente, antes de outro elemento.
+
+    Por que é útil?
+
+    É muito útil quando você precisa inserir um item em uma posição específica, e não apenas no começo ou fim.
+
+    
+    let novoItem = document.createElement("li");
+    novoItem.textContent = "Item intermediário";
+    let lista = document.querySelector("ul");
+    let itemEspecifico = document.querySelector("#itemEspecifico");
+    lista.insertBefore(novoItem, itemEspecifico); // Insere o novo item antes do item especificado.
+
+.insertAdjacentElement(), .insertAdjacentHTML() e .insertAdjacentText():
+
+    Oferecem controle preciso sobre onde você deseja inserir um novo elemento, seja ele um texto, HTML ou elemento, em relação a um elemento existente.
+
+    Por que é útil?
+
+    Permitem inserções em quatro posições diferentes: antes, depois, no início ou no final do elemento selecionado.
+
+    
+    let div = document.querySelector("div");
+    div.insertAdjacentHTML('beforebegin', '<p>Antes da div</p>');
+    div.insertAdjacentHTML('afterend', '<p>Depois da div</p>');
+    div.insertAdjacentHTML('afterbegin', '<p>No começo da div</p>');
+    div.insertAdjacentHTML('beforeend', '<p>No final da div</p>');
+
+
+ .replaceChild():
+
+    Substitui um elemento filho por outro.
+
+    Por que é útil?
+
+    Se você precisa atualizar ou trocar um elemento por um novo, você pode usar este método.
+
+    
+    let lista = document.querySelector("ul");
+    let antigoItem = document.querySelector("#antigoItem");
+    let novoItem = document.createElement("li");
+    novoItem.textContent = "Item substituto";
+    lista.replaceChild(novoItem, antigoItem); // Substitui o item antigo pelo novo.
+
+.cloneNode():
+
+    Duplica um elemento.
+
+    Por que é útil?
+
+    Se você precisa de uma cópia exata de um elemento (com ou sem seus filhos), este método é perfeito.
+
+    
+    let item = document.querySelector("li");
+    let itemDuplicado = item.cloneNode(true); // Com "true" ele copia todos os filhos do item.
+    document.querySelector("ul").appendChild(itemDuplicado);
+
+03 ---------------------------------------------------------------------------------
+
+a diferença entre usar elemento.addEventListener('click', mostrarAlerta) e elemento.onclick = mostrarAlerta.
+
+addEventListener: Com ele, você pode adicionar mais de um ouvinte para o mesmo evento. Imagine que você quer que o botão exiba um alerta e também mude de cor quando clicado.
+
+onclick: Se você tentar definir mais de uma ação usando onclick, a última definida é a que permanecerá, sobrescrevendo as anteriores.
+
+
+innerHTML retorna e altera o conteúdo HTML de um elemento, enquanto textContent retorna e altera o conteúdo de texto de um elemento. 
+Use innerHTML quando você precisar alterar o HTML e textContent quando quiser modificar apenas o texto.
+
+
+
+A Diferença entre btnRemoverConcluidas.onclick = () => removerTarefas(true) e btnRemoverConcluidas.onclick = removerTarefas
+
+
+btnRemoverConcluidas.onclick = () => removerTarefas(true)    ==== função que executa outra função
+
+
+
+btnRemoverConcluidas.onclick = removerTarefas    === não podemos passar parametros pois ela será executada
